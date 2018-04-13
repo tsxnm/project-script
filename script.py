@@ -7,6 +7,7 @@ import argparse
 import utils
 import networkx as nx
 import numpy as np
+from part1_utils import *
 # from utils_sp18 import *
 from student_utils_sp18 import *
 # import planarity
@@ -43,15 +44,14 @@ def format_file(input_file, num_vertex) :
     file_object.write("1") #starting node will always be 1 (i think lol)
     matrix = dummy_matrix()
 
+    #note this is list of lists
+    output_matrix = matrix_join(matrix, num_copies)
+    #print(output_matrix)
 
-    # adjacency matrix parsing!!!! this is pretty hardcoded for the
-    # matrix above but i plan to change it to a more general thing
-    # such that it inputs an adj matrix that is (total_nodes x total_nodes)
-    # in size. but i kept it here for now for testing reasons lol
-    for i in range(0, 8):
+    for i in range(len(output_matrix)):
         file_object.write("\n")
-        for j in range(0, 8):
-            node = matrix[i][j]
+        for j in range(len(output_matrix)):
+            node = output_matrix[i][j]
             file_object.write(str(node) + " ")
 
 
