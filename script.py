@@ -66,6 +66,7 @@ def names(input_matrix_size, num_copies):
 	for i in range num_copies:
 		for _ in range(0,input_matrix_size):
 			file_object.write(str(kname) + i + " ")
+		i++
 
 
 		#look at dummy matrix 
