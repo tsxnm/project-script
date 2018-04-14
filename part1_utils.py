@@ -39,4 +39,8 @@ def matrix_join(input_adj, num_copies):
 		y_counter = 0
 		x_counter += 1
 
+	#connect the very last node back to the very first node
+	output_matrix[0][output_dim - 1] = 1
+	output_matrix[output_dim - 1][0] = 1 
+
 	return output_matrix
