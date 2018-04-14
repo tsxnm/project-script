@@ -35,6 +35,7 @@ def format_file(input_file, num_vertex) :
     total_nodes = num_copies * 8
     file_object.write(str(total_nodes) + "\n")
 
+    #func that takes in tptal nodes and outputs correct names
     kingdom_name = 1
     for _ in range(0, total_nodes):
         file_object.write(str(kingdom_name) + " ")
@@ -56,11 +57,20 @@ def format_file(input_file, num_vertex) :
 
 
 
-
     # CLOSE FILE AFTER OPENING
     file_object.close()
 
+#naming kingdoms
+def names(input_matrix_size, num_copies):
+	kname=a
+	for i in range num_copies:
+		for _ in range(0,input_matrix_size):
+			file_object.write(str(kname) + i + " ")
 
+
+		#look at dummy matrix 
+		#first copy has a
+		#second append numbers
 
 # Main function
 def main():
