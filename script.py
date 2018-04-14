@@ -39,7 +39,6 @@ def format_file(input_file, num_vertex, small_graph_dim) :
     kingdom_names = names(small_graph_dim, num_copies)
     for kingdom_name in kingdom_names:
         file_object.write(str(kingdom_name) + " ")
-        kingdom_name += 1
 
     file_object.write("\n")
     file_object.write("1") #starting node will always be 1 (i think lol)
