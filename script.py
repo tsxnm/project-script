@@ -27,17 +27,17 @@ def dummy_matrix():
 
 
 # Open file and write the adjancency matrix in it and then close it
-def format_file(input_file, num_vertex) :
+def format_file(input_file, num_vertex, small_graph_dim) :
     file_object = open("input_file", "w")
 
 
-    num_copies = num_vertex // 8
-    total_nodes = num_copies * 8
+    num_copies = num_vertex // small_graph_dim
+    total_nodes = num_copies * small_graph_dim
     file_object.write(str(total_nodes) + "\n")
 
     #func that takes in tptal nodes and outputs correct names
-    kingdom_name = 1
-    for _ in range(0, total_nodes):
+    kingdom_names = names(small_graph_dim, num_copies)
+    for kingdom_name in kingdom_names:
         file_object.write(str(kingdom_name) + " ")
         kingdom_name += 1
 
@@ -62,16 +62,18 @@ def format_file(input_file, num_vertex) :
 
 #naming kingdoms
 def names(input_matrix_size, num_copies):
-	kname=a
-	for i in range num_copies:
-		for _ in range(0,input_matrix_size):
-			file_object.write(str(chr(kname+97)) + i + " ")
-		i++
-
-
-		#look at dummy matrix 
-		#first copy has a
-		#second append numbers
+    kname=97
+    retlist = []
+    for i in range(num_copies):
+        for j in range(0,input_matrix_size):
+            if i == 0:
+                name = chr(kname)
+            else:
+                name = chr(kname) + str(i)
+            retlist.append(name)
+            kname += 1
+        kname = 97
+    return retlist
 
 # Main function
 def main():
@@ -79,7 +81,7 @@ def main():
     parser.add_argument('integer', type=int)
     vertex = int(''.join(sys.argv[1:2]))
 
-    format_file("input.txt", vertex)
+    format_file("input.txt", vertex, 8)
 
 
 # Keep for script
