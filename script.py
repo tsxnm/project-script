@@ -59,21 +59,12 @@ def format_file(input_file, num_vertex, small_graph_dim) :
     file_object = open("input_file", "w")
 
 
-<<<<<<< HEAD
     num_copies = num_vertex // 9
     total_nodes = num_copies * 9
     file_object.write(str(total_nodes) + "\n")
 
      #func that takes in tptal nodes and outputs correct names
     kingdom_names = names(9, num_copies)
-=======
-    num_copies = num_vertex // small_graph_dim
-    total_nodes = num_copies * small_graph_dim
-    file_object.write(str(total_nodes) + "\n")
-
-    #func that takes in tptal nodes and outputs correct names
-    kingdom_names = names(small_graph_dim, num_copies)
->>>>>>> ddd6d559e57ad0ab95c1e5e5159d873a6d9331c3
     for kingdom_name in kingdom_names:
         file_object.write(str(kingdom_name) + " ")
 

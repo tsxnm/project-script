@@ -41,10 +41,6 @@ def matrix_join(input_adj, num_copies):
 
 	#connect the very last node back to the very first node
 	output_matrix[0][output_dim - 1] = 1
-<<<<<<< HEAD
 	output_matrix[output_dim - 1][0] = 1
-=======
-	output_matrix[output_dim - 1][0] = 1 
->>>>>>> ddd6d559e57ad0ab95c1e5e5159d873a6d9331c3
 
 	return output_matrix
