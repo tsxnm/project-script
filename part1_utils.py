@@ -1,6 +1,7 @@
 import numpy as np
 
-CONNECTOR_WEIGHT = 'FILL_ME_IN'
+
+CONNECTOR_WEIGHT = 1
 
 """
 input_adj: adjacency matrix of smaller graph; dimension nxn np.array
@@ -12,9 +13,11 @@ returns output matrix, which is a list of lists representing the new
 	adjacency matrix; it will be dimension (n*num_copies)x(n*num_copies)
 """
 def matrix_join(input_adj, num_copies):
-	input_matrix = input_adj.tolist()
+
+	input_matrix = input_adj
 	n = len(input_matrix)
-	
+
+
 	output_dim = n*num_copies
 	output_matrix = [['x']*output_dim for i in range(output_dim)]
 	counter = 0
@@ -38,5 +41,10 @@ def matrix_join(input_adj, num_copies):
 		y_counter = 0
 		x_counter += 1
 
+
+	#connect the very last node back to the very first node
+	output_matrix[0][output_dim - 1] = 1
+	output_matrix[output_dim - 1][0] = 1
+
 	return output_matrix
-			
+
