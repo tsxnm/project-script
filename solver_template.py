@@ -28,8 +28,9 @@ def solve(list_of_kingdom_names, starting_kingdom, adjacency_matrix, params=[]):
 
 
 """
-TODO: implement k-clusters using this distance
+TODO: implement k-clusters using this distance (done)
 TODO: determine node would be best to determine as start center; for now, just use start node
+TODO: write algorithm to conquer mini-clusters using MSTs
 """
 
 def k_clusters(k, dist_dict, start, list_of_kingdom_names):
