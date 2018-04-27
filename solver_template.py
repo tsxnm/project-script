@@ -24,13 +24,48 @@ def solve(list_of_kingdom_names, starting_kingdom, adjacency_matrix, params=[]):
     Output:
         Return 2 things. The first is a list of kingdoms representing the walk, and the second is the set of kingdoms that are conquered
     """
-    raise Exception('"solve" function not defined')
-    # return closed_walk, conquered_kingdoms
+    dist_dict = distances(list_of_kingdom_names, adjacency_matrix)
+
 
 """
 TODO: implement k-clusters using this distance
 TODO: determine node would be best to determine as start center; for now, just use start node
 """
+
+def k_clusters(k, dist_dict, start, list_of_kingdom_names):
+    """returns list of lists, representing clusters"""
+    curr_node = start
+    centers = [start]
+    while len(centers) < k:
+        cum_dists = [0]*len(list_of_kingdom_names)
+        for center in centers:
+            dists = dist_dict[center]
+            for i in range in len(dists):
+                cum_dists[i] += dists[i]
+        max_cum_dist_ind = 0
+        max_cum_dist = 0
+        for i in range(len(cum_dists)):
+            if cum_dists[i] > max_cum_dist:
+                max_cum_dist = cum_dists[i]
+                max_cum_dist_ind = i
+        centers.append(list_of_kingdom_names[max_cum_dist_ind])
+    clusters = {}
+    for kingdom in dist_dict:
+        if kingdom not in centers:
+            closest_dist = sys.maxsize
+            closest_center = centers[0]
+            dists = dist_dict[kingdom]
+            for center in centers:
+                c_ind = list_of_kingdom_names.index(center)
+                if dists[c_ind] < closest_dist:
+                    closest_dist = dists[c_ind]
+                    closest_center = center
+            if closest_center in clusters:
+                clusters[closest_center].append(kingdom)
+            else:
+                clusters[closest_center] = [kingdom]
+    cluster_list = map(list, clusters.items())
+    return list(cluster_list)
 
 def replace_xs(adjacency_matrix):
     """
