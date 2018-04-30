@@ -68,12 +68,57 @@ def k_clusters(k, dist_dict, start, list_of_kingdom_names):
     cluster_list = map(list, clusters.items())
     return list(cluster_list)
 
+
+"""
+Returns the MST of a subcluster of kingdoms.
+"""
+def mst_cluster_solver(list_of_subkingdoms, adjacency_matrix):
+    #convert to numpy matrix
+    np_matrix = np.array(adjacency_matrix)
+
+    #convert numpy to nx graph
+    G = nx.from_numpy_matrix(np_matrix)
+    G_mst = nx.minimum_spanning_tree(G)
+
+    # we can use neighbors on G to find the connected nodes of the MST
+    list_mst_nodes = list(G.nodes) #this is the conquered
+    neighbor_list = [G.neighbors(n) for n in list_mst_nodes]
+    set_neighbors = set(neighbor_list)
+    #neighbors and mst nodes are the kingdoms that have surrendered
+    return list(set_neighbors), list_mst_nodes
+
+
+
 def replace_xs(adjacency_matrix):
     """
     TODO: make a function that replaces "x"s with shortest path distance to that node
     use this from networkx: https://networkx.github.io/documentation/latest/reference/algorithms/shortest_paths.html
     """
-    #implement here
+
+    #replace x in adj matrix with 0
+    copy = adjacency_matrix.deepcopy()
+    #convert to numpy matrix
+    np_matrix = np.array(adjacency_matrix)
+
+    #convert numpy to nx graph
+    G = nx.from_numpy_matrix(np_matrix)
+
+
+    for i in range(NUM_VERTICES):
+        for j in range(NUM_VERTICES):
+            if adjacency_matrix[i][j] == 'x':
+                # find the shortest path from node[i][i] to node[i][j]
+
+
+                #  quick note: the shortest path len always is one less than the
+                #  optimal answer because that is just how networkx works according
+                #  to the documents online
+                shortest = 1 + nx.shortest_path_length(G, adjacency_matrix[i][i], adjacency_matrix[i][j])
+
+                copy[i][j] = shortest
+
+    SHORTEST_PATHS_MATRIX = copy
+    return SHORTEST_PATHS_MATRIX
 
 def distances(list_of_kingdom_names, adjacency_matrix):
     """
